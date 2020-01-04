@@ -50,6 +50,6 @@ with sr.Microphone() as source:                   #使用麥克風監聽取得so
     except sr.UnknownValueError:
         print("Google Speech Recognition could not understand audio")
     except sr.RequestError as e:
-        print("No response from Google Speech Recognition service: {0}".form$
+        print("No response from Google Speech Recognition service: {0}".format(e))
 
 
