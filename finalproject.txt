@@ -1,0 +1,55 @@
+import speech_recognition as sr
+from omxplayer.player import OMXPlayer
+from pathlib import Path
+from time import sleep
+import time
+import contextlib
+with contextlib.redirect_stdout(None):
+    import pygame
+#obtain audio from the microphone
+r=sr.Recognizer()
+with sr.Microphone() as source:
+    def listen():
+        with sr.Microphone() as source:
+            print("please wait")
+            r.adjust_for_ambient_noise(source, duration=5)
+            print("Say something!")
+            audio=r.listen(source)
+            try:
+			print("Google Speech Recognition thinks you said:")
+                word=r.recognize_google(audio, language="zh-TW")
+                print(word)
+                return word
+            except sr.UnknownValueError:
+                print("Google Speech Recognition could not understand audio")
+            except sr.RequestError as e:
+				print("No response from Google Speech Recognition service: {0}".format(e))
+	print("Please wait. Calibrating microphone...")
+    #listen for 5 seconds and create the ambient noise energy level
+    r.adjust_for_ambient_noise(source, duration=5)
+    print("Say something!")
+    audio=r.listen(source)
+
+# recognize speech using Google Speech Recognition
+    try:
+        print("Google Speech Recognition thinks you said:")
+        word=r.recognize_google(audio, language="zh-TW")
+        print(word)
+        while word!="Google":
+            if word=="音樂":
+                pygame.mixer.init()
+                pygame.mixer.music.load("/home/sabrina/webapp/PeerPressure.m$
+                pygame.mixer.music.play(1,0)
+            elif word=="考試":
+				pygame.mixer.music.pause()
+            elif word=="聽話":
+                pygame.mixer.music.unpause()
+            word=listen()
+        pygame.mixer.music.stop()
+
+    except sr.UnknownValueError:
+        print("Google Speech Recognition could not understand audio")
+    except sr.RequestError as e:
+        print("No response from Google Speech Recognition service: {0}".form$
+
+
